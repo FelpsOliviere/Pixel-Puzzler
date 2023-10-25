@@ -24,14 +24,15 @@ public class Connection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Connector"))
         {
-            Debug.Log("Was Conected");
+            /*Debug.Log("Was Conected");
             wasConnected = true;
-            ConnectPieces(collision);
+            ConnectPieces(collision);*/
+            puzzlePiece.GetComponent<Pieces>().canMove = false;
         }
     }
-
+    /*
     void ConnectPieces(Collision collision)
     {
         collision.transform.position = transform.position;
-    }
+    }*/
 }

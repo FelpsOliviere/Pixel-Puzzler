@@ -9,6 +9,7 @@ public class Connector : MonoBehaviour
     public GameObject puzzlePiece;
     public Connection connectionScript;
     private GameObject connection;
+    public bool isSelected;
     public Vector3 startPos;
 
     // Start is called before the first frame update
@@ -20,14 +21,16 @@ public class Connector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (wasConnected)
+        isSelected = puzzlePiece.GetComponent<Pieces>().isSelected;
+        /*if (wasConnected)
         {
             connection.transform.position = transform.position;
-        }
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && isSelected)
         {
-            wasConnected = false;
+            puzzlePiece.GetComponent<Pieces>().canMove = true;
+            //transform.parent.SetParent(null);
         }
 
         //puzzlePiece.transform.position = startPos;
@@ -35,11 +38,24 @@ public class Connector : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Connection"))
+        /* if (collision.gameObject.CompareTag("Connection"))
         {
             connection = collision.gameObject;
             wasConnected = true;
             Debug.Log("Was Conected");
+        }*/
+
+        if (collision.gameObject.CompareTag("Connection"))
+        {
+            /*var newParent = new GameObject();
+            newParent.gameObject.name = "Connected Pieces";
+            newParent.transform.SetParent(collision.transform.parent.parent); // Get the parent of the current gameobject the collider is attached to
+            collision.transform.parent.SetParent(newParent.transform); // Doing .parent because this is the child collider
+            transform.parent.SetParent(newParent.transform);*/
+
+            puzzlePiece.GetComponent<Pieces>().canMove = false;
+            puzzlePiece.transform.position
+            //collision.gameObject.GetComponent<Connection>().puzzlePiece.GetComponent<Pieces>().canMove = false;
         }
     }
 }
