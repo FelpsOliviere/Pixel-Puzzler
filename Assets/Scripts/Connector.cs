@@ -54,7 +54,7 @@ public class Connector : MonoBehaviour
             transform.parent.SetParent(newParent.transform);*/
 
             puzzlePiece.GetComponent<Pieces>().canMove = false;
-            puzzlePiece.transform.position
+            //puzzlePiece.transform.position
             //collision.gameObject.GetComponent<Connection>().puzzlePiece.GetComponent<Pieces>().canMove = false;
         }
     }
